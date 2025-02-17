@@ -135,8 +135,29 @@ func splitNCases(_ string: String, n: Int) -> [String] {
  ["1", "2", "2", "3", "5", "5", "1"] -> 3
  
  */
- 
-// паеределано О(n)
+//-----------------------------------------------------------------------------------------------------(Переделано O(n))
+
+func countCouples(array: [Character]) -> Int {
+    var counter = (Int(), Int())
+    for (index, item) in array.enumerated() {
+        if counter.0 != counter.1 {
+            counter.0 += 1
+            continue
+        }
+        if index + 1 <= array.count - 1 {
+            if item == array[index + 1] {
+                counter.1 += 1
+            }
+        }
+    }
+    return counter.1
+}
+
+let testString: [Character] = ["1", "2", "2", "3", "5", "5", "1"]
+let resultFunc = countCouples(array: testString)
+print(resultFunc)
+
+/*
 func countCouples(array: [Character]) -> Int {
     var dict: [Character : Int] = [:]
     var counter = Int()
@@ -159,6 +180,7 @@ func countCouples(array: [Character]) -> Int {
 //let testString: [Character] = ["1", "2", "2", "3", "5", "5", "1"]
 //let result = countCouples(array: testString)
 //print(result)
+ */
 
 //-----------------------------------------------------------------------------------------------------------------5
 
@@ -172,6 +194,26 @@ func countCouples(array: [Character]) -> Int {
  
  */
 
+func appersMode(string: String) -> [String] {
+    var dict: [Character : Int] = [:]
+    
+    var maxCount = Int()
+    //O(n)
+    for item in string {
+        dict[item, default: 0] += 1
+        maxCount = maxCount < dict[item, default: 0] ? dict[item, default: 0] : maxCount
+    }
+    
+    //O(n)
+    let result = dict.filter({$0.value == maxCount}).map({String($0.key)})
+    return result
+}
+
+let testStringMax = "abcdefab"
+let resultMax = appersMode(string: testStringMax)
+print(resultMax)
+
+/*
 //переделать - O(n)!!!!
 
 func appersMode(string: String) -> [String] {
@@ -189,6 +231,7 @@ func appersMode(string: String) -> [String] {
     
     return resultArr
 }
+ */
 
 //let testString = "tomatto"
 //let result = appersMode(string: testString)
@@ -377,9 +420,9 @@ func maxVisitors(array: [(Int, Int)]) -> String {
     return "\(day) - день, \(person) - гостя"
 }
 
-let testArr = [(1,2), (1,3), (2,4), (2,3)]
-let result = maxVisitors(array: testArr)
-print(result)
+//let testArr = [(1,2), (1,3), (2,4), (2,3)]
+//let result = maxVisitors(array: testArr)
+//print(result)
 
 /*
 1
