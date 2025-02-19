@@ -136,7 +136,7 @@ func splitNCases(_ string: String, n: Int) -> [String] {
  
  */
 //-----------------------------------------------------------------------------------------------------(Переделано O(n))
-
+//1-1 пары
 func countCouples(array: [Character]) -> Int {
     var counter = (Int(), Int())
     for (index, item) in array.enumerated() {
@@ -153,7 +153,7 @@ func countCouples(array: [Character]) -> Int {
     return counter.1
 }
 
-let testString: [Character] = ["1", "2", "2", "3", "5", "5", "1"]
+let testString: [Character] = ["1", "2", "2", "2", "3", "5", "5", "1"]
 let resultFunc = countCouples(array: testString)
 print(resultFunc)
 
